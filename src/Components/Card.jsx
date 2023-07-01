@@ -1,5 +1,13 @@
 import React from "react";
 
+const getTodosFromStorage = () => {
+  const localData = localStorage.getItem("todos");
+  return localData ? JSON.parse(localData) : [];
+};
+
+const saveTodosFromStorage = (todos) => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
 
 const Card = ({ name, username, id }) => {
 
