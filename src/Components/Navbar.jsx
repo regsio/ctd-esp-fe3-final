@@ -5,7 +5,13 @@ import ContextGlobal from '../contextGlobal'
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
-
+  const {theme, toggleTheme} = React.useContext(ContextGlobal)
+  
+  // Defino el estilo
+  const navbarStyles = {
+    background: theme.background,
+    color: theme.font
+  }
   return (
     <nav>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
