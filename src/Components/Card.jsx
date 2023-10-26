@@ -3,7 +3,7 @@ import { ContextGlobal } from '../Components/utils/global.context';
 import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
-  const {theme, toggleTheme} = React.useContext(GlobalContext)
+  const {theme, toggleTheme} = React.useContext(ContextGlobal)
 
   const cardStyles = {
     background: theme.background,
