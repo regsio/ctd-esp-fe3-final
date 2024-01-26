@@ -1,14 +1,17 @@
+// 4) De detail pasamos a CARD
 import React from "react";
-import { ContextGlobal } from '../Components/utils/global.context';
 import { Link } from "react-router-dom";
+import Style from "./Card.css"
+import { GlobalContext } from "./utils/global.context";
 
 const Card = ({ data }) => {
-  const {theme, toggleTheme} = React.useContext(ContextGlobal)
+  const {theme, toggleTheme} = React.useContext(GlobalContext)
 
   const cardStyles = {
     background: theme.background,
     color: theme.font
   }
+
   const addFav = ()=>{
     // Aqui iria la logica para agregar la Card en el localStorage
     try{
@@ -34,12 +37,11 @@ const Card = ({ data }) => {
     } catch (error) {
       console.log("Error al agregar la tarjeta a favoritos:", error);
     }
-  }
+  }; 
 
   return (
     <div className="card" style={cardStyles}>
         {/* En cada card deberan mostrar en name - username y el id */}
-
         {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
         <Link to={`/detail/${data.id}`} className="card-link">
             <h3 style={cardStyles}>ID: {data.id}</h3>

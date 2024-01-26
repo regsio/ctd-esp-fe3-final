@@ -1,8 +1,7 @@
-import {createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
-export const initialState = {theme: "", data: []}
-
-export const ContextGlobal = createContext();
+// Define el contexto global
+export const GlobalContext = createContext();
 
 export const themes = {
   light: {
@@ -15,17 +14,18 @@ export const themes = {
   },
 };
 
+// Define el proveedor del contexto global
+export function GlobalProvider({ children }) {
+  const [theme, setTheme] = useState("light"); // Tema inicial
+  const [apiData, setApiData] = useState([]); // Almacena los datos de la API
 
-
-
-export const ContextProvider = ({ children }) => {
-  //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
-  const [theme, setTheme] = useState("light"); 
-  const [apiData, setApiData] = useState([]); 
+  // Función para cambiar el tema
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === themes.light ? themes.dark : themes.light));
   };
-  const fetchData = async() => {
+
+  // Función para obtener datos de la API
+  const fetchData = async () => {
     try {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/users"
@@ -37,13 +37,16 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  // Cargar datos de la API al montar el componente
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
-    <ContextGlobal.Provider value={{theme, toggleTheme, apiData}}>
+    <GlobalContext.Provider
+      value={{ theme, toggleTheme, apiData }}
+    >
       {children}
-    </ContextGlobal.Provider>
+    </GlobalContext.Provider>
   );
-};
+}

@@ -1,9 +1,9 @@
 import React from 'react'
-import { ContextGlobal } from './utils/global.context'
-
+import { GlobalContext } from './utils/global.context'
 
 const Footer = () => {
-  const {theme, toggleTheme} = React.useContext(ContextGlobal)
+  const {theme, toggleTheme} = React.useContext(GlobalContext)
+
   const footerStyles = {
     background: theme.background,
     color: theme.font
@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer style={footerStyles}>
         <p>Powered by</p>
-        <img src="./img/DH.png" alt='DH-logo' />
+        <img src="./images/DH.png" alt='DH-logo' />
     </footer>
   )
 }

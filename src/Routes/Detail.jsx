@@ -1,13 +1,13 @@
-import React,{ useState, useEffect} from 'react'
-
-import { ContextGlobal } from '../Components/utils/global.context';
-
+// 3) Estructuro el consumo de la API en el componente Detail.jsx
+import React, { useState, useEffect} from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { GlobalContext } from '../Components/utils/global.context';
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
-  const {theme, toggleTheme} = React.useContext(ContextGlobal)
+    // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
+
+    const {theme, toggleTheme} = React.useContext(GlobalContext)
 
   const detailStyles = {
     background: theme.background,
@@ -35,6 +35,7 @@ const Detail = () => {
   useEffect(() => {
     getDentista();
   }, [id]);
+
 
   return (
     <div className='detail'>
